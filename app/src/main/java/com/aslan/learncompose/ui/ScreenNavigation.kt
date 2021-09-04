@@ -19,11 +19,12 @@ sealed class NavigationItem(val route: String, val title: String, @DrawableRes v
     object Profile : NavigationItem("profile", "Profile", R.drawable.ic_profile)
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun Navigation(navController: NavHostController) {
+fun Navigation(navController: NavHostController, bsState: ModalBottomSheetState) {
     NavHost(navController = navController, startDestination = NavigationItem.Home.route) {
         composable(NavigationItem.Home.route) {
-            HomeScreen()
+            HomeScreen(bsState)
         }
 
         composable(NavigationItem.Notification.route) {
